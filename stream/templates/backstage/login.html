@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ _('login') }} {% end %}
+
+{% block main %} 
+<div id='content' class='span-18 append-3 prepend-3 last'>
+<div id='login_form'>
+    <form action='/writer/login' method='POST'/>
+        {{ xsrf_form_html () }}
+        <span class='label large'>{{ _('Key:') }}</span> <input type='text' name='public_key' />
+        <button type='submit' id='login' name='login' >{{ _('login') }}</button>
+    </table>
+</div>
+</div>
+{% end %}

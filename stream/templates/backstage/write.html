@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %} {{_('Composing')}} {% end %}
+{% block breadcrumbs %}
+{{ escape ('>>') }}
+{{ _('composing') }}
+{% end %}
+{% block main %}
+<div id='content' class='span-18'>
+    <div id='composing'>
+    {% if article  %}
+    <form action='/writer/update/{{ article.key() }}' method='POST' name='form_write'>
+    <div>
+        {% if article.title_url and article.title %}
+        <a href='/{{article.title_url}}' target='blank'>{{ article.title if article.title else _('Untitled') }}</a>
+        &nbsp;|&nbsp;
+        {{ article.hits }} + {{ article.hits_feed }}
+        &nbsp;|&nbsp;
+        {{ article.created }}
+        {% end %}
+    </div>
+    {% else %}
+    <form action='/writer/save' method='POST' name='form_write'>
+    {% end %}
+    {{ xsrf_form_html () }}
+    <table>
+    <tr>
+        <td><span class='label'>{{_('Title:')}}</span></td>
+        <td><input type='text' name='title' value='{{ escape(article.title) if article and article.title  else ''}}' /></td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{_('Title link:')}}</span></td>
+        <td><input type='text' name='title_link' value='{{ escape(article.title_link) if article and article.title_link else ''}}' /></td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{_('Title url:')}}</span></td>
+        <td><input type='text' name='title_url' value='{{ escape(article.title_url) if article and article.title_url else ''}}' /></td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{_('Parent link:')}}</span></td>
+        <td><input type='text' name='parent_link' value='{{ escape(article.parent_url) if article and article.parent_url else ''}}' /></td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{_('Content:')}}</span></td>
+        <td><textarea name='content'>{{escape(article.content) if article and article.content else ''}}</textarea></td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{_('Set:')}}</span></td>
+        <td><input type='text' name='article_set' value='{{ escape(article.article_set) if article and article.article_set else ''}}' /></td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{_('Format:')}}</span></td>
+        <td>
+        <select name='format'>
+            <option value='html' {{ 'selected="selected"' if format == 'html' else '' }} >HTML</option>
+            <option value='markdown' {{ 'selected="selected"' if format == 'markdown' else ''}} >Markdown</option>
+            <option value='txt' {{ 'selected="selected"' if format == 'txt' else ''}} >Plain Text</option>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{_('Is page:')}}</span></td>
+        <td>
+        <select name='is_page'>
+            <option value='False' {{ 'selected="selected"' if article and article.is_page == False else ''}}>{{_('No')}}</option>
+            <option value='True' {{ 'selected="selected"' if article and article.is_page == True else ''}}>{{_('Yes')}}</option>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span class='label'>{{ _('Is for sidebar:')}}</span></td>
+        <td>
+        <select name='is_for_sidebar'>
+            <option value='False' {{ 'selected="selected"' if article and article.is_for_sidebar == False else ''}}>{{_('No')}}</option>
+            <option value='True' {{ 'selected="selected"' if article and article.is_for_sidebar == True else ''}}>{{_('Yes')}}</option>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td colspan='2' class='align-center'>
+        <a class="button" id="save" href="javascript:document.form_write.submit()">Save</a>
+        {% if article %}
+        &nbsp;|&nbsp;
+        <a class="button" id="delete" href="#;" onclick="if (confirm('Are you sure?')) { location.href = '/writer/remove/{{ article.key() }}';}">{{_('Delete')}}</a>
+        {% else %}
+        &nbsp;|&nbsp;
+        <a class="button" id="discard" href="/writer/overview">{{_('Discard')}}</a>
+        {% end %}
+        </td>
+    </tr>
+    </table>
+    </form>
+    </div>
+</div>
+<div id='sidebar' class='span-6 last'>
+    <ul>
+        <li> <a href='/writer' class='button'>{{_('Overview')}}</a></li>
+    </ul>
+</div>
+{% end %}

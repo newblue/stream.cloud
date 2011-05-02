@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ escape (article.title) }}
+{% end %}
+
+{% block breadcrumbs %}
+{{ escape ('>>') }} {{ escape(article.title) }}
+{% end %}
+
+{% block main %}
+<div id='content' class='span-18 last'>
+    <h1>
+        <img src='/img/text50.png' />
+        {% if article.title_link %}
+        <a href='{{ escape(article.title_link) }}' target='blank'>{{escape(article.title)}}</a>
+        {% else %}
+        {{ escape(article.title) }}
+        {% end %}
+    </h1>
+    <hr/>
+    {{ article.format_content() }}
+
+</div>
+{% end %}

@@ -1,0 +1,16 @@
+.align-right { text-align: right; }
+.align-center {text-align: center; }
+.align-left { text-align: left; }
+li { list-style: none; }
+body { font-size: 15px; }
+a:link, a:visited, a { font-weight: bold; text-decoration: none; vertical-align: bottom;}
+#sidebar a:link, .page a:visited { font-size: large; }
+#sidebar { text-align: right; }
+#breadcrumbs { border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; vertical-align: bottom;}
+#footer { border-top: 1px solid #ccc; padding-top: 1em; padding-bottom: 5em;}
+.red { font-weight: bold; color: red; }
+.power_by ul, .power_by li { margin: 0; padding: 0; }
+.bold { font-weight: bold; }
+h1, h2, h3, h4, h5, h6 { font-weight: bold; vertical-align: bottom; }
+img { vertical-align: middle; }
+#article_content { margin-left: 1em; }

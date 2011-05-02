@@ -1,0 +1,71 @@
+<html>
+<head>
+    <title>{% block title %}{% end %} {{ site_name }}</title>
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/print.css" type="text/css" media="print"> 
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+    <link rel="stylesheet" href="/css/frontstage.css" type="text/css" media="screen, projection"> 
+</head>
+<body>
+<div id='logo' class='container'>
+    <div class='span-12'>
+    <img src='/img/logo.png' alt='logo of {{ site_name}}' />
+    </div>
+    <div class='span-12 last '>
+    </div>
+</div>
+<div id='header' class='container'>
+    {% block header %} {% end %}
+</div>
+<div id='breadcrumbs' class='container'>
+    <a href='/'><img src='/img/home24.png' alt='home'/>&nbsp;{{_('Home')}}</a>{% block breadcrumbs %} {% end %}
+</div>
+
+<div id='main' class='container'>
+    <div id='sidebar' class='span-5 align-right append-1'>
+    <ul>
+        <li><a href='/'>{{_('Home')}}</a></li>
+        <li><a href='/top'>{{_('Top')}}</a></li>
+        <li><a href='/archive'>{{_('Archive')}}</a></li>
+        {% for page in pages %}
+        <li>
+            <a href='{{page.title_url}}'>{{escape(page.title)}}</a>
+        </li>
+        {% end %}
+    </ul>
+    </div>
+    {% block main %} {% end %}
+</div>
+
+<div id='footer' class='container'>
+    <div id='misc'>
+    {% block footer %} {% end %}
+    </div>
+    <div id='about' class='span-8 align-left'>
+        <ul>
+            <li>DEVELOPER: NewBlue</a></li>
+            <li>VERSION: <span class='red'>BETA</span></li>
+        </ul>
+    </div>
+    <div id='strem_cloud' class='span-8 align-right bold'>
+        KISS[Keep It Simple &amp; Small]<br/>
+        这是一个简单的个人信息分享平台<br/>
+        架构于GAE[Google App Engine]和Tornado框架</br/>
+        功能很简单，所以请保持它的简单<br/>
+        <br/>
+    </div>
+    <div id='power_by' class='span-8 last align-right'>
+        <ul>
+        <li>
+            <a href='https://github.com/facebook/tornado' target='blank' rel='nofollow'><img src='/img/tornado.mini.png' alt='tornado'/></a>
+        </li>
+        <li>
+            <a href='http://code.google.com/appengine/' target='blank' rel='nofollow'><img src='http://code.google.com/appengine/images/appengine-silver-120x30.gif' alt='power by google app engine'/></a>
+        </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

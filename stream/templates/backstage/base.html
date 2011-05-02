@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>{% block title %} {{ site_name }} {% end %}</title>
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/print.css" type="text/css" media="print"> 
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+    <link rel="stylesheet" href="/css/backstage.css" type="text/css" media="screen, projection"> 
+</head>
+<body>
+<div id='header' class='container'>
+    {% block header %} {% end %}
+</div>
+<div id='breadcrumbs' class='container'>
+    <a href='/' target='blank'>{{_('Home')}}</a>
+    {{ escape ('>>') }}
+    <a href='/writer' >{{_('Overview')}}</a>
+    {% block breadcrumbs %}
+    {% end %}
+</div>
+<div id='main' class='container'>
+    {% block main %} {% end %}
+</div>
+<div id='footer' class='container'>
+    {% block footer %} 
+        <div class='align-center'>
+            <ul class='inline'>
+                <li>
+                    <img src='http://www.google.com/accounts/adwords20x20.gif' alt='Adword'/>
+                    <a href='https://adwords.google.com/' target='blank'>AdWork</a>
+                </li>
+                <li>
+                    <img src='http://www.google.com/accounts/reader20x20.gif' alt='Google Reader'/> 
+                    <a href='https://www.google.com/reader' target='blank'>Google Reader</a>
+                </li>
+                <li>
+                    <img src='http://www.google.com/accounts/gmail20x20.gif' alt='Google Gmail' />
+                    <a href='https://www.gmail.com/' target='blank'>Gmail</a>
+                <li>
+                <li>
+                    <img src='http://www.google.com/accounts/analytics20x20.gif' alt='Google Analytics' />
+                    <a href='https://www.google.com/analytics/home/?hl=zh-CN' target='blank'>Google Analytics</a>
+                </li>
+                <li>
+                    <img src='http://www.google.com/accounts/sitemaps20x20.gif' alt='Google Webmaster' />
+                    <a href='http://www.google.com/webmasters/tools' target='blank'>Google Webmaster</a>
+                </li>
+            </ul>
+        </div>
+    {% end %}
+</div>
+</body>
+</html>

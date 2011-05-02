@@ -1,0 +1,20 @@
+body { font-size: 12px; vertical-align: middle; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+.align-left { text-align: left; }
+.label { font-weight: bold; }
+#footer { border-top: 1px solid #ccc;  padding: 1em;}
+#main { margin-top: 1em; margin-bottom: 1em; }
+input { padding: 5px; }
+#composing input[name='title'], #composing input[name='title_url'], #composing input[name='title_link'], #composing input[name='parent_link'] { width: 36em;} 
+#composing textarea[name='content'] { width: 36em; height: 18em; padding: 5px; }
+#composing input[name='article_set'] { width: 12em;}
+.inline { display: inline;}
+.inline ul { margin: 0; }
+.inline li { display: inline; margin-left: 1em;}
+.inline li:first { margin-left: 0; }
+#login_form { text-align: center; }
+input[name='public_key'] { width: 22em; }
+li { list-style: none; }
+img{ vertical-align: middle; }
+a, a:link, a:visited { text-decoration: none; }

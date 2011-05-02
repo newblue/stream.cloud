@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %} {{ _('Overview') }} {% end %}
+
+{% block main %}
+<div id='content' class='span-18'>
+<h1>{{ _('Overview') }}</h1>
+<hr/>
+<div id="mentions">
+    <h2>Mentions on Web</h2>
+    {% if mentions_web %}
+    <ul>
+        {% for mention in mentions_web %}
+        <li>
+            <a href="{{ mention.link }}" target="_blank">{{ mention.title }}</a> 
+            by <a href="{{ mention.author_detail.href }}" target="_blank">{{ mention.author_detail.name }}</a>
+        </li>
+        {% end %}
+    </ul>
+    {% else %}
+    <div class="notice">{{_('Currently no one mentioned you.')}}</div>
+    {% end %}
+
+    <hr/>
+    <h2><img src="/img/twitter.png"/> Mentions on Twitter</h2>
+    {% if mentions_twitter %}
+    <ul>
+        {% for mention in mentions_twitter %}
+        <li>
+            {{ mention.text }} by 
+            <a href="https://twitter.com/{{ mention.from_user }}" target="_blank">{{ mention.from_user }}</a>
+        </li>
+        {% end %}
+    </ul>
+    {% else %}
+    <div class='notice'>{{_('Currently no one twittered you.')}}</div>
+    {% end %}
+</div>
+<hr/>
+<div id='articles'>
+{% if articles.count () %}
+<h2>{{_('Articles')}}</h2>
+<table>
+    <tr>
+        <th> {{_('Title:')}}</th>
+        <th> {{_('Set:')}}</th>
+        <th> {{_('Type:')}}</th>
+        <th> {{_('Action:')}}</th>
+        <th> {{_('Created')}}</th>
+        <th> {{_('Last modified')}}</th>
+        <th> {{_('Hints')}}</th>
+    </tr>
+    {% for article in articles.fetch (12) %}
+    <tr>
+        <td>
+            <a href='/writer/edit/{{ article.key() }}'>{{ article.title if article.title else _('Untitled')}}</a>
+            <a href='{{ article.title_url }}' target='_blank'>{{ escape('>>') }}</a>
+        </td>
+        <td>
+            {% if article.article_set and len(article.article_set) %}
+            {{article.article_set}}
+            {% end %}
+        </td>
+        <td>
+            {% if article.is_page %}
+            {{ _('PAGE') }}
+            {% elif article.is_for_sidebar %}
+            {{ _('ISOLATED') }}
+            {% end %}
+        </td>
+        <td>
+            <a href="#;" onclick="if (confirm('Are you sure?')) { location.href = '/writer/remove/{{ article.key() }}';}">{{_('Delete') }}</a>
+        </td>
+        <td>{{ article.created }}</td>
+        <td>{{ article.last_modified  }}</td>
+        <td>{{ article.hits }} + {{ article.hits_feed }}</td>
+    </tr>
+    {% end %}
+    </table>
+{% end %}
+</div>
+</div>
+<div id='sidebar' class='span-6 last'>
+    <div id='action'>
+        <ul class='inline'>
+            <li><a href='/writer/new' class='button'>{{ _('New') }}</a></li>
+            <li><a href='/writer/settings' class='button'>{{_('Settings')}}</a></li>
+            <li><a href='/writer/logout' class='button'>{{_('Logout')}}</a></li>
+        </ul>
+    </div>
+</div>
+{% end %}

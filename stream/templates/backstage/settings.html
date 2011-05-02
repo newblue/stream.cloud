@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ _('Settings') }} {% end %}
+
+{% block breadcrumbs %}
+{{ escape ('>>') }}
+{{ _('Settings')}}
+{% end %}
+
+{% block main %}
+<div id='content' class='span-18 append-3 last prepend-3'>
+	<form method="POST" action="/writer/settings" name="form_settings">
+	<h3>General</h3>
+	<small>These options affect user experience and SEO.</small>
+    <hr/>
+    <table>
+    <tr>
+	    <td>{{_('Primary Domain')}}</td>
+	    <td><input type="text" name="site_domain" value="{{ site_domain if site_domain else ''}}" /></td>
+    </tr>
+    <tr>
+        <td>{{_('Secondary Domain for Sync')}}</td>
+	    <td><input type="text" name="site_domain_sync" value="{{ site_domain_sync if site_domain_sync else ''}}" /></td>
+    </tr>
+    <tr>
+	    <td>{{_('Site Name')}}</td>
+	    <td><input type="text" name="site_name" value="{{ site_name if site_name else ''}}" /></td>
+    </tr>
+    <tr>
+        <td>{{_('Author')}}</td>
+	    <td><input type="text" name="site_author" value="{{ site_author if site_author else ''}}" /></td>
+    </tr>
+    <tr>
+        <td>{{_('Slogan')}}</td>
+	    <td><input type="text" name="site_slogan" value="{{ site_slogan if site_slogan else ''}}" /></td>
+    </tr>
+    <tr>
+	    <td>Google Analytics ID <small>e.g. UA-11940834-1</small></td>
+	    <td><input type="text" name="site_analytics" value="{{ site_analytics if site_analytics else ''}}" /></td>
+    </tr>
+    <tr>
+	    <td>{{_('Default Format for New Post')}}</td>
+        <td>
+	    <select name="site_default_format">
+            <option value='html' {{ 'selected="selected"' if site_default_format == 'html' else '' }} >HTML</option>
+            <option value='markdown' {{ 'selected="selected"' if site_default_format == 'markdown' else ''}} >Markdown</option>
+            <option value='txt' {{ 'selected="selected"' if site_default_format == 'txt' else ''}} >Plain Text</option>
+        </select>
+        </td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Twitter</h3>
+    <small>By turning on this option, your every post will be synchronized to your Twitter.</small>
+    <hr/>
+    <table>
+    <tr>
+	    <td>{{_('Twitter Account')}}</td>
+	    <td><input type="text" name="twitter_account" value="{{ twitter_account if twitter_account else ''}}" /></td>
+    </tr>
+    <tr>
+        <td>{{_('Twitter Password')}}</td>
+	    <td><input type="password" name="twitter_password" value="{{ twitter_password if twitter_password else ''}}" /></td>
+    </tr>
+    <tr>
+	    <td>{{_('Twitter Sync')}}</td>
+        <td>
+	        <select name="twitter_sync">
+                <option value="True" {{ 'selected="selected"' if twitter_sync == True else '' }}>On</option>
+                <option value="False" {{ 'selected="selected"' if twitter_sync == False else '' }}>Off</option>
+            </select>
+        </td>
+    </tr>
+    </table>
+    <hr/> 
+    <h3>Integration</h3>
+    <small>Integrate various 3rd-party services here.</small>
+    <hr/>
+    <table>
+    <tr>
+        <td>{{_('Alternative Feed')}}</td>
+	    <td><input type="text" name="feed_url" value="{{ feed_url if feed_url else ''}}" /></td>
+    </tr>
+    </table>
+
+    {{ xsrf_form_html () }}
+    <hr/>
+    <div class='align-center'>
+	    <a class="button" id="do_submit" href="javascript:document.form_settings.submit()">{{_('Save')}}</a>
+    </div>
+	</form>
+</div>
+{% end %}

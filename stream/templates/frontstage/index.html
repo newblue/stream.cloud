@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    {% if page_type == 'archive' %}
+    {{ _('Archive')}} 
+    &nbsp; | &nbsp; 
+    {% elif page_type == 'top' %} 
+    {{ _('Top') }}    
+    &nbsp; | &nbsp; 
+    {% end %}
+{% end %}
+
+{% block breadcrumbs %} 
+    {% if page_type == 'archive' %} 
+        {{ escape ('>>') }} {{ _('Archive') }}
+    {% elif page_type == 'top' %}
+        {{ escape ('>>') }} {{ _('Top') }}
+    {% end %} 
+{% end %}
+
+{% block main %}
+<div id='content' class='span-18 last'>
+    {% if page_type == 'archive' %}
+    <h1 class='archive'>{{_('COMPLETE ARCHIVE')}}</h1>
+    {% elif page_type == 'top' %}
+    <h1 class='top'>{{_('TOP')}}</h1>
+    {% end %}
+    {% for article in articles.fetch (12) %}
+        <h2>
+            <img src='/img/text24.png' />
+            {% if article.title_link %}
+                <a href='{{escape(article.title_link)}}'>{{escape(article.title)}}</a>
+            {% else %}
+                {{ escape (article.title) }}
+            {% end %}
+        </h2> 
+        <div id='article_content'>
+        {{ article.format_content() }}
+        </div>
+        <div class='align-right small'>
+            {{ article.created }} &nbsp; | &nbsp; <a href='{{ escape(article.title_url) }}'>{{ escape (article.title) }}</a>
+        </div>
+        <hr/>
+    {% end %}
+    <div>
+    {% if page_type == 'home' %}
+        <a href='/archive'>{{_('ARCHIVE')}}</a>
+        &nbsp; | &nbsp;
+        <a href='/top'>{{_('TOP')}}</a>
+    {% elif page_type == 'archive' %}
+        <a href='/'>{{_('HOME')}}</a>
+        &nbsp; | &nbsp;
+        <a href='/top'>{{_('TOP')}}</a>
+    {% elif page_type == 'top' %}
+        <a href='/'>{{_('HOME')}}</a>
+        &nbsp; | &nbsp;
+        <a href='/archive'>{{_('ARCHIVE')}}</a>
+    {% end %}
+    </div>
+</div>
+{% end %}
