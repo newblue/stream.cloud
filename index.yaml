@@ -9,3 +9,31 @@ indexes:
 # manually, move them above the marker line.  The index.yaml file is
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
+
+- kind: Node
+  properties:
+  - name: is_for_sidebar
+  - name: is_page
+  - name: title
+    direction: desc
+
+- kind: Node
+  properties:
+  - name: is_page
+  - name: created
+
+- kind: Node
+  properties:
+  - name: is_page
+  - name: created
+    direction: desc
+
+- kind: Node
+  properties:
+  - name: is_page
+  - name: hits
+
+- kind: Node
+  properties:
+  - name: is_page
+  - name: last_modified
