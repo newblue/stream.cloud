@@ -9,8 +9,23 @@ import version
 import key
 from model import *
 import logging
-import time, os, urllib
+import time, os, urllib, re
 from google.appengine.api import urlfetch
+
+class NoFollow :
+    def __init__ (self, domain):
+        pattern = ''.join ([r'^\s*https?://', domain, r'.*'])
+        logging.info ('nofollow pattern: %s', pattern)
+        self.regex = re.compile (pattern, re.I)
+
+    def __call__ (self, link, echo = True):
+        if isinstance (link, str) or isinstance (link, unicode) and not self.regex.match (link):
+            logging.info ('nofollow match: %s', link)
+            return False if not echo else 'rel="nofollow external"'
+        else:
+            logging.info ('nofollow not match: %s', link)
+            return True if not echo else ''
+
 
 def administrator (method):
     @functools.wraps (method)
@@ -39,6 +54,12 @@ class FrontstageHandler (BaseHandler):
         self.values = Datum.get_many ('site_domain', 'site_name', 'site_author', 
                                         'site_slogan', 'site_analytics', 'site_updated')
 
+        site_domain = self.values.get ('site_domain', None)
+        nofollow = None
+        if site_domain and len(site_domain) :
+            nofollow = NoFollow (site_domain)
+            logging.info (nofollow ('http://wwww.ciiaii.com/'))
+        self.values['nofollow'] = nofollow
         if 'site_updated' in self.values and not self.values['site_updated'] :
             self.values['site_updated'] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 

@@ -28,17 +28,17 @@
     {% for article in articles.fetch (12) %}
         <h2>
             <img src='/img/text24.png' />
-            {% if article.title_link %}
-                <a href='{{escape(article.title_link)}}'>{{escape(article.title)}}</a>
+            {% if article.title_link and len(article.title_link) %}
+                <a href='{{escape(article.title_link)}}' {{ nofollow (article.title_link) }} target='blank'>{{escape(article.title)}}</a>
             {% else %}
-                {{ escape (article.title) }}
+                <a href='/{{escape(article.title_url)}}' >{{ escape (article.title) }}</a>
             {% end %}
         </h2> 
         <div id='article_content'>
         {{ article.format_content() }}
         </div>
         <div class='align-right small'>
-            {{ article.created }} &nbsp; | &nbsp; <a href='{{ escape(article.title_url) }}'>{{ escape (article.title) }}</a>
+            {{ article.created }} &nbsp; | &nbsp; <a href='/{{ escape(article.title_url) }}'>{{ escape (article.title) }}</a>
         </div>
         <hr/>
     {% end %}

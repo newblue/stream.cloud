@@ -14,28 +14,28 @@ settings = {
 }
 
 application = tornado.wsgi.WSGIApplication ([
-        ('/writer', backstage.OverviewHandler),
-        ('/writer/login', backstage.LoginHandler),
-        ('/writer/logout', backstage.LogoutHandler),
-        ('/writer/overview', backstage.OverviewHandler),
-        ('/writer/settings', backstage.SettingsHandler),
-        ('/writer/new', backstage.WriteHandler),
-        ('/writer/save', backstage.SyncHandler),
-        ('/writer/ping', backstage.PingHandler),
-        ('/writer/update/([0-9a-zA-Z\-\_]+)', backstage.SyncHandler),
-        ('/writer/edit/([0-9a-zA-Z\-\_]+)', backstage.WriteHandler),
-        ('/writer/remove/([0-9a-zA-Z\-\_]+)', backstage.RemoveHandler),
-        ('/writer/quickfind', backstage.QuickFindHandler),
+        (r'/writer', backstage.OverviewHandler),
+        (r'/writer/login', backstage.LoginHandler),
+        (r'/writer/logout', backstage.LogoutHandler),
+        (r'/writer/overview', backstage.OverviewHandler),
+        (r'/writer/settings', backstage.SettingsHandler),
+        (r'/writer/new', backstage.WriteHandler),
+        (r'/writer/save', backstage.SyncHandler),
+        (r'/writer/ping', backstage.PingHandler),
+        (r'/writer/update/([0-9a-zA-Z\-\_]+)', backstage.SyncHandler),
+        (r'/writer/edit/([0-9a-zA-Z\-\_]+)', backstage.WriteHandler),
+        (r'/writer/remove/([0-9a-zA-Z\-\_]+)', backstage.RemoveHandler),
+        (r'/writer/quickfind', backstage.QuickFindHandler),
 
-        ('/archive', frontstage.ArchiveHandler),
-        ('/top', frontstage.TopHandler),
-        ('/index.xml', frontstage.AtomFeedHandler),
-        ('/set.xml', frontstage.SetAtomFeedHandler),
-        ('/sitemap.xml', frontstage.AtomSitemapHandler),
-        ('/robots.txt', frontstage.RobotsHandler),
-        ('/', frontstage.HomeHandler),
-        ('/hit/([0-9a-zA-Z\-\_]+)', frontstage.HitFeedHandler),
-        ('/([0-9a-zA-Z\-\.]+)', frontstage.ArticleHandler)
+        (r'/archive', frontstage.ArchiveHandler),
+        (r'/top', frontstage.TopHandler),
+        (r'/index.xml', frontstage.AtomFeedHandler),
+        (r'/set.xml', frontstage.SetAtomFeedHandler),
+        (r'/sitemap.xml', frontstage.AtomSitemapHandler),
+        (r'/robots.txt', frontstage.RobotsHandler),
+        (r'/', frontstage.HomeHandler),
+        (r'/hit/([0-9a-zA-Z\-\_]+)', frontstage.HitFeedHandler),
+        (r'/([%0-9a-zA-Z\-\.]+)', frontstage.ArticleHandler)
 ], **settings)
 
 def run ():

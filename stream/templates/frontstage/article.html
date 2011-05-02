@@ -12,8 +12,8 @@
 <div id='content' class='span-18 last'>
     <h1>
         <img src='/img/text50.png' />
-        {% if article.title_link %}
-        <a href='{{ escape(article.title_link) }}' target='blank'>{{escape(article.title)}}</a>
+        {% if article.title_link and len(article.title_link) %}
+        <a href='{{ escape(article.title_link) }}' {{ nofollow (article.title_link) }} target='blank'>{{escape(article.title)}}</a>
         {% else %}
         {{ escape(article.title) }}
         {% end %}
