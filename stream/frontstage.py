@@ -41,15 +41,18 @@ class TopHandler (FrontstageHandler):
 class ArticleHandler (FrontstageHandler):
     def get (self, url):
         article = Node.get_article (url)
-        if article is None :
-            self.render ('frontstage/404.html')
-            return
         pages = Node.get_pages ()
-        self.values ['article'] = article
-        self.values ['pages'] = pages
-        self.values ['related'] = article.get_related ()
-        self.values ['parent'] = article.get_parent ()
-        self.render ('frontstage/article.html', **self.values)
+        self.values['pages'] = pages
+        if article is None :
+            self.set_status (404)
+            self.render ('frontstage/404.html', **self.values)
+        else:
+            pages = Node.get_pages ()
+            self.values ['article'] = article
+            self.values ['pages'] = pages
+            self.values ['related'] = article.get_related ()
+            self.values ['parent'] = article.get_parent ()
+            self.render ('frontstage/article.html', **self.values)
 
 
 class AtomFeedHandler (FrontstageHandler):

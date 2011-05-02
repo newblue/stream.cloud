@@ -14,3 +14,4 @@ a:link, a:visited, a { font-weight: bold; text-decoration: none; vertical-align:
 h1, h2, h3, h4, h5, h6 { font-weight: bold; vertical-align: bottom; }
 img { vertical-align: middle; }
 #article_content { margin-left: 1em; }
+.not_found { margin-top: 100px; margin-bottom: 100px; font-size: 2em;}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ _('Not Found') }} &nbsp;|&nbs;
+{% end %}
+
+{% block breadcrumbs %}
+    {{ escape ('>>') }} {{_('Not Found')}}
+{% end %}
+
+
+{% block main %}
+<div id='content' class='span-18 last align-center'>
+    <div class='large not_found'>
+    {{ _('I\'m Very SORRY, PAGE NOT FOUND') }}
+    </div>
+</div>
+{% end %}
