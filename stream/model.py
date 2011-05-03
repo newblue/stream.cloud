@@ -43,7 +43,7 @@ class Node (db.Model):
         memcache.delete_multi(obsolete)
 
     @staticmethod
-    def get_articles (order = 'created', all = False):
+    def get_articles (order = '-created', all = False):
         key = 'articles'
         if order :
             key = '_'.join ([key, order])
