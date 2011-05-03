@@ -12,7 +12,7 @@ settings = {
     'cookie_secret' : hashlib.sha1 (key.PRIVATE_KEY).hexdigest (),
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "xsrf_cookies": True,
-    'debug' : True,
+    'debug' : False,
 }
 
 application = tornado.wsgi.WSGIApplication ([
