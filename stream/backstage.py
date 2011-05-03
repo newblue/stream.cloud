@@ -42,7 +42,7 @@ class OverviewHandler (BackstageHandler):
         site_domain = self.values.get ('site_domain', None)
         site_domain_sync = Datum.get ('site_domain_sync', None)
         mentions_web = cache.get ('mentions_web')
-        if False and  mentions_web == None and site_domain:
+        if mentions_web == None and site_domain:
             link = ''.join (['http://blogsearch.google.com/blogsearch_feeds?hl=en&q=',
                              urllib.quote('link:' + site_domain),
                              '&ie=utf-8&num=10&output=atom'])
@@ -53,7 +53,7 @@ class OverviewHandler (BackstageHandler):
         else:
             self.values ['mentions_web'] = None
         mentions_twitter = cache.get('mentions_twitter')
-        if False and mentions_twitter is None:    
+        if mentions_twitter is None:    
             q = None
             if site_domain_sync is None:
                 q = site_domain
@@ -186,7 +186,7 @@ class SyncHandler (BackstageHandler):
             self.sync2twitter (article)
             self.ping_google () 
         self.render ('backstage/write.html', **self.values)
-
+    
 class QuickFindHandler (BackstageHandler):
     @administrator
     def post (self):
