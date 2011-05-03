@@ -29,7 +29,7 @@
         <h2>
             <img src='/img/text24.png' />
             {% if article.title_link and len(article.title_link) %}
-                <a href='{{escape(article.title_link)}}' {{ nofollow (article.title_link) }} target='blank'>{{escape(article.title)}}</a>
+                <a href='{{escape(article.title_link)}}' {{ nofollow (article.title_link) }} target='_blank'>{{escape(article.title)}}</a>
             {% else %}
                 <a href='/{{escape(article.title_url)}}' >{{ escape (article.title) }}</a>
             {% end %}
