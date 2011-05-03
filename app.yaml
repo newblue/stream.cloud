@@ -12,7 +12,7 @@ handlers:
   static_files: static/img/favicon.ico
   upload: static/favicon.ico
   mime_type: image/x-icon
-#expiration: 10000d
+  expiration: 10000d
 
 # Most bots request robots
 - url: /robots.txt
