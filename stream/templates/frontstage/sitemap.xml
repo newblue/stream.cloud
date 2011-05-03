@@ -14,7 +14,7 @@
 	{% end %}
 	<link rel="alternate" type="text/html" href="http://{{ site_domain }}/{{ article.title_url }}" />
 	<id>tag:{{ site_domain }},{{ article.created.strftime("%Y-%m-%d") }}:/{{ article.title_url }}</id>
-	<published>{{ article.created.strftime("%Y-%m-%dT%H:%M:%SZ") }Z</published>
+	<published>{{ article.created.strftime("%Y-%m-%dT%H:%M:%SZ") }}</published>
 	<updated>{{ article.last_modified.strftime("%Y-%m-%dT%H:%M:%SZ") }}</updated>
 	<author>
 		<name>{{ site_author }}</name>
