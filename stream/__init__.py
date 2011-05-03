@@ -5,9 +5,11 @@ import tornado.wsgi
 import tornado.locale
 import wsgiref.handlers
 import frontstage, backstage
-import os 
+import key
+import os, hashlib 
 
 settings = {
+    'cookie_secret' : hashlib.sha1 (key.PRIVATE_KEY).hexdigest (),
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "xsrf_cookies": True,
     'debug' : True,
