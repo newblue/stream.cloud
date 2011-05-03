@@ -12,7 +12,7 @@
     <form action='/writer/update/{{ article.key() }}' method='POST' name='form_write'>
     <div>
         {% if article.title_url and article.title %}
-        <a href='/{{article.title_url}}' target='blank'>{{ article.title if article.title else _('Untitled') }}</a>
+        <a href='/{{article.title_url}}' target='_blank'>{{ article.title if article.title else _('Untitled') }}</a>
         &nbsp;|&nbsp;
         {{ article.hits }} + {{ article.hits_feed }}
         &nbsp;|&nbsp;
@@ -95,6 +95,7 @@
 <div id='sidebar' class='span-6 last'>
     <ul>
         <li> <a href='/writer' class='button'>{{_('Overview')}}</a></li>
+        <li> <a href='/writer/new' class='button'>{{_('New')}}</a></li>
     </ul>
 </div>
 {% end %}
